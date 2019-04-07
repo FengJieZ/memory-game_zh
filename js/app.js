@@ -9,6 +9,11 @@ const donuts = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt
  *   - 循环遍历每张卡片，创建其 HTML
  *   - 将每张卡的 HTML 添加到页面
  */
+donuts = shuffle(donuts);
+
+for (let i =0;i<16;i++){
+    document.querySelector('.card').remove();
+}
 
 
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
