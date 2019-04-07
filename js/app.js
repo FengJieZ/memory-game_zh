@@ -1,7 +1,7 @@
 /*
  * 创建一个包含所有卡片的数组
  */
-const donuts = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb','fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb'];
+let donuts = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb','fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb'];
 
 /*
  * 显示页面上的卡片
@@ -11,20 +11,28 @@ const donuts = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt
  */
 donuts = shuffle(donuts);
 
-for (let i =0; i < 16; i ++){
-    document.querySelector('.card').remove();
+function ReStart(){
+
+    for (let i =0; i < 16; i ++){
+        document.querySelector('.card').remove();
+    }
+
+    const mainUl = document.querySelector('.deck');
+
+    for (let i = 0; i < 16; i ++){
+        const newLi = document.createElement('li');
+        newLi.className = "card";
+        const newI = document.createElement('i');
+        newI.className = donuts[i];
+        newLi.appendChild(newI);
+        mainUl.appendChild(newLi);
+    }
 }
 
-const mainUl = document.querySelector('.deck');
-
-for (let i = 0; i < 16; i ++){
-    const newLi = document.createElement('li');
-    newLi.className = "card";
-    const newI = document.createElement('i');
-    newI.className = donuts[i];
-    newLi.appendChild(newI);
-    mainUl.appendChild(newLi);
-}
+const mainRestart = document.querySelector('.restart');
+mainRestart.addEventListener('click', function() {
+    ReStart();
+});
 
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
 function shuffle(array) {
