@@ -21,7 +21,7 @@ function ReStart(){
 
     for (let i = 0; i < 16; i ++){
         const newLi = document.createElement('li');
-        newLi.className = "card open show";
+        newLi.className = "card";
         const newI = document.createElement('i');
         newI.className = donuts[i];
         newLi.appendChild(newI);
@@ -29,10 +29,13 @@ function ReStart(){
     }
 }
 
+/*
 const mainRestart = document.querySelector('.restart');
 mainRestart.addEventListener('click', function() {
     ReStart();
-});
+},true);
+*/
+
 
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -60,3 +63,16 @@ function shuffle(array) {
  *    + 增加移动计数器并将其显示在页面上（将这个功能放在你从这个函数中调用的另一个函数中）
  *    + 如果所有卡都匹配，则显示带有最终分数的消息（将这个功能放在你从这个函数中调用的另一个函数中）
  */
+
+ function FlipCard(){
+    event.target.className = "card open show";
+ }
+
+ document.addEventListener('click',function(event){
+     if (event.target.className === 'fa fa-repeat'){
+         ReStart();
+     }else if (event.target.className === 'card'){
+        FlipCard();
+     }
+ });
+ 
