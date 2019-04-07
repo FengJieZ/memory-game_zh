@@ -11,10 +11,20 @@ const donuts = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt
  */
 donuts = shuffle(donuts);
 
-for (let i =0;i<16;i++){
+for (let i =0; i < 16; i ++){
     document.querySelector('.card').remove();
 }
 
+const mainUl = document.querySelector('.deck');
+
+for (let i = 0; i < 16; i ++){
+    const newLi = document.createElement('li');
+    newLi.className = "card";
+    const newI = document.createElement('i');
+    newI.className = donuts[i];
+    newLi.appendChild(newI);
+    mainUl.appendChild(newLi);
+}
 
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
 function shuffle(array) {
