@@ -9,9 +9,9 @@ let donuts = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt',
  *   - 循环遍历每张卡片，创建其 HTML
  *   - 将每张卡的 HTML 添加到页面
  */
-donuts = shuffle(donuts);
 
 function ReStart(){
+    donuts = shuffle(donuts);
 
     for (let i =0; i < 16; i ++){
         document.querySelector('.card').remove();
@@ -21,7 +21,7 @@ function ReStart(){
 
     for (let i = 0; i < 16; i ++){
         const newLi = document.createElement('li');
-        newLi.className = "card";
+        newLi.className = "card open show";
         const newI = document.createElement('i');
         newI.className = donuts[i];
         newLi.appendChild(newI);
