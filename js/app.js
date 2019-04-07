@@ -11,9 +11,12 @@ let donuts = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt',
  */
 
 function ReStart(){
+    const ClickMoves = document.querySelector('.moves');
+    ClickMoves.textContent = 0;
+
     donuts = shuffle(donuts);
 
-    for (let i =0; i < 16; i ++){
+    for (let i = 0; i < 16; i ++){
         document.querySelector('.card').remove();
     }
 
@@ -28,14 +31,6 @@ function ReStart(){
         mainUl.appendChild(newLi);
     }
 }
-
-/*
-const mainRestart = document.querySelector('.restart');
-mainRestart.addEventListener('click', function() {
-    ReStart();
-},true);
-*/
-
 
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -69,17 +64,17 @@ function shuffle(array) {
      if (event.target.id != "match"){
         event.target.className = "card open show";
         event.target.id = "open";
-        console.log(event.target.className);
+        //console.log(event.target.className);
      }
  }
 
  function CardArrey(){
      var opencard = "";
      opencard = event.target.firstChild.className;
-     console.log(opencard);
+     //console.log(opencard);
      const cardId = document.querySelector('#open');
      if (cardId != null && cardId.firstChild.className === opencard){
-        console.log(cardId.firstChild.className);
+        //console.log(cardId.firstChild.className);
         cardId.id = "match";
         cardId.className = "card match";
         event.target.className = "card match";
@@ -92,31 +87,29 @@ function shuffle(array) {
             cardId.id = "";
         }
      }
-     
 
- /*function ComparisonCard(){
-     const MatchCard = document.querySelector('#open');
-     console.log(MatchCard.firstChild.className);
-     console.log(event.target.firstChild.className);
-     if (cardArrey[0] === event.target.firstChild.className){
-        event.target.className = "card match";
-        MatchCard.className = "card match";
-     }else{
-        MatchCard.className = "card";
-        MatchCard.id = "";
-        event.target.className = "card";
-        event.target.id = "";
+     function ClickCard(){
+        const ClickMoves = document.querySelector('.moves');
+        ClickMoves.textContent ++;
      }
- }*/
 
-
+     function Congratulations(){
+         const CardID = document.querySelectorAll('.match');
+         if (CardID.length === 16){
+             console.log("Congratulations");
+             alert("Congratulations");
+         }
+     }
+     
  document.addEventListener('click',function(event) {
      if (event.target.className === 'fa fa-repeat'){
         ReStart();
      }else if (event.target.className === 'card'){
-        console.log(event.target.className);
+        //console.log(event.target.className);
+        ClickCard();
         CardArrey();
         FlipCard();
+        Congratulations()
      }
  });
  
