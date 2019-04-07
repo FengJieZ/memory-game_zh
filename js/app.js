@@ -63,15 +63,59 @@ function shuffle(array) {
  *    + 增加移动计数器并将其显示在页面上（将这个功能放在你从这个函数中调用的另一个函数中）
  *    + 如果所有卡都匹配，则显示带有最终分数的消息（将这个功能放在你从这个函数中调用的另一个函数中）
  */
+    
 
  function FlipCard(){
-    event.target.className = "card open show";
+     if (event.target.id != "match"){
+        event.target.className = "card open show";
+        event.target.id = "open";
+        console.log(event.target.className);
+     }
  }
 
- document.addEventListener('click',function(event){
+ function CardArrey(){
+     var opencard = "";
+     opencard = event.target.firstChild.className;
+     console.log(opencard);
+     const cardId = document.querySelector('#open');
+     if (cardId != null && cardId.firstChild.className === opencard){
+        console.log(cardId.firstChild.className);
+        cardId.id = "match";
+        cardId.className = "card match";
+        event.target.className = "card match";
+        event.target.id = "match";
+        }
+        else if (cardId != null && cardId.firstChild.className != opencard){
+            event.target.className = "card";
+            event.target.id = "";
+            cardId.className = "card";
+            cardId.id = "";
+        }
+     }
+     
+
+ /*function ComparisonCard(){
+     const MatchCard = document.querySelector('#open');
+     console.log(MatchCard.firstChild.className);
+     console.log(event.target.firstChild.className);
+     if (cardArrey[0] === event.target.firstChild.className){
+        event.target.className = "card match";
+        MatchCard.className = "card match";
+     }else{
+        MatchCard.className = "card";
+        MatchCard.id = "";
+        event.target.className = "card";
+        event.target.id = "";
+     }
+ }*/
+
+
+ document.addEventListener('click',function(event) {
      if (event.target.className === 'fa fa-repeat'){
-         ReStart();
+        ReStart();
      }else if (event.target.className === 'card'){
+        console.log(event.target.className);
+        CardArrey();
         FlipCard();
      }
  });
