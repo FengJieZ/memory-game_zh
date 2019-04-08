@@ -17,10 +17,16 @@ cards = cards.concat(cards);
  *   - 循环遍历每张卡片，创建其 HTML
  *   - 将每张卡的 HTML 添加到页面
  */
+var timer1 = null;
+
+ReStart();
+//timedCount();
+
+function Reload(){
+    window.location.reload();
+}
 
 function ReStart(){
-
-    stopTime();
 
     const mainStarts = document.querySelector('.stars');
     for (let i = 0; i < 3; i ++){
@@ -55,6 +61,7 @@ function ReStart(){
     }
 }
 
+
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -81,6 +88,8 @@ function shuffle(array) {
  *    + 增加移动计数器并将其显示在页面上（将这个功能放在你从这个函数中调用的另一个函数中）
  *    + 如果所有卡都匹配，则显示带有最终分数的消息（将这个功能放在你从这个函数中调用的另一个函数中）
  */
+
+ 
     
 
  function FlipCard(){
@@ -116,8 +125,7 @@ function shuffle(array) {
         ClickMoves.textContent ++;
      }
 
-     var timer1 = null;
-
+     
      function Congratulations(){
          //const CardID = document.querySelectorAll('.match');
          //if (CardID.length === 16){
@@ -129,17 +137,17 @@ function shuffle(array) {
 
      function Starts(){
          console.log(timer1);
-         if (timer1 > 15000 && timer1 < 20000){
+         if (timer1 > 19998 && timer1 < 20000){
             if (document.querySelector('.stars').children.length != 0){
                 document.querySelector('.stars').firstElementChild.remove();
                 return;
              }
-         }else if(timer1 >500000 && timer1 < 510000){
+         }else if(timer1 >50998 && timer1 < 51000){
             if (document.querySelector('.stars').children.length != 0){
                 document.querySelector('.stars').firstElementChild.remove();
                 return;
              }
-         }else if(timer1 > 1000000){
+         }else if(timer1 > 100000){
             if (document.querySelector('.stars').children.length != 0){
                 document.querySelector('.stars').firstElementChild.remove();
                 return;
@@ -150,7 +158,7 @@ function shuffle(array) {
 
      function timedCount(){
         timer1 = window.setInterval(timedCount,1000);
-        var timer = timer1 / 1000;
+        Starts();
         //console.log(timer);
      }
 
@@ -160,18 +168,16 @@ function shuffle(array) {
      
  document.addEventListener('click',function(event) {
      if (event.target.className === 'fa fa-repeat'){
-        ReStart();
+         Reload();
      }else if (event.target.className === 'card'){
         //console.log(event.target.className);
         ClickCard();
         CardArrey();
         FlipCard();
-        Starts();
-        if (document.querySelectorAll('.match').length != 16){
-            timedCount();
-        }else{
+        //Starts();
+        if (document.querySelectorAll('.match').length === 16){
             Congratulations();
-        }
      }
- });
+    }
+});
  
