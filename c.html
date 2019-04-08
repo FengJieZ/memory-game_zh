@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Congratulations</title>
+    
+</head>
+<body>
+    <div>
+        <head>
+            <h1>Congratulations!</h1>
+            <ul>
+                    <i>Use</i>
+                    <i class="seconds"></i>
+                    <i>Seconds</i>
+            </ul>
+            <ul>
+                <i>With</i>
+                <i class="moves"></i>
+                <i>Moves</i>
+            </ul>
+            <ul>
+                <i>And</i>
+                <i class="stars"></i>
+                <i>Stars</i>
+            </ul>
+        </head>
+        <button onclick = "window.open('index.html')">Play angin</button>
+        <button onclick = "window.close()">Close</button>
+    </div>
+</body>
+
+<script>
+    /*window.addEventListener('message',function(e){
+        var d = e.data;
+        //document.querySelector('.seconds').textContent = ;
+        //document.querySelector('.moves').textContent = d;
+        //document.querySelector('.stars').textContent = 
+    });*/
+    var addstr= document.URL;
+    var num=addstr.indexOf("?") 
+    addstr=addstr.substr(num + 1);
+    var arr = [];
+    arr = addstr.split("|");
+    var sc = arr[0];
+    var mv = arr[1];
+    var st = arr[2];
+    document.querySelector('.seconds').textContent = sc;
+    document.querySelector('.moves').textContent = mv;
+    document.querySelector('.stars').textContent = st;
+</script>
+</html>

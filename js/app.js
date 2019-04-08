@@ -135,19 +135,22 @@ function Congratulations(){
         var time2 = timer1 / 1000;
         var CMoves = document.querySelector('.moves').textContent;
         var StarN = document.querySelector('.stars').children.length;
-        alert("Congratulations! " + " You used " + time2 + "seconds. " + " And with" + CMoves + "moves. " + " And " + StarN + " stars ");
-        
+        //alert("Congratulations! " + " You used " + time2 + "seconds. " + " And with" + CMoves + "moves. " + " And " + StarN + " stars ");
+        //var data = CMoves;
+        //window.parent.postMessage(data,'*');
+        window.open("c.html" + "?" + time2 + "|" + CMoves + "|" + StarN);
+        window.close();
      }
 }
 
 function Starts(){
     //console.log(timer1);
-    if (timer1 === 20000 ){
+    if (timer1 === 20000 || timer1 === 399999 || timer1 === 900000){
         if (document.querySelector('.stars').children.length != 0){
             document.querySelector('.stars').firstElementChild.remove();
             //return;
         }
-    }else if(timer1 === 399999 ){
+    }/*else if(timer1 === 399999 ){
         if (document.querySelector('.stars').children.length != 0){
             document.querySelector('.stars').firstElementChild.remove();
             //return;
@@ -157,7 +160,7 @@ function Starts(){
             document.querySelector('.stars').firstElementChild.remove();
             //return;
         }
-    }
+    }*/
 }
 
 
