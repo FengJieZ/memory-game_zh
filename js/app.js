@@ -19,6 +19,21 @@ cards = cards.concat(cards);
  */
 
 function ReStart(){
+
+    stopTime();
+
+    const mainStarts = document.querySelector('.stars');
+    for (let i = 0; i < 3; i ++){
+        document.querySelector('.stars').firstElementChild.remove();
+    }
+    for (let i = 0; i < 3; i ++){
+        const newL = document.createElement('li');
+        const newFa = document.createElement('i');
+        newFa.className = "fa fa-star";
+        newL.appendChild(newFa);
+        mainStarts.appendChild(newL);
+    }
+
     const ClickMoves = document.querySelector('.moves');
     ClickMoves.textContent = 0;
 
@@ -101,20 +116,46 @@ function shuffle(array) {
         ClickMoves.textContent ++;
      }
 
+     var timer1 = null;
+
      function Congratulations(){
-         const CardID = document.querySelectorAll('.match');
-         if (CardID.length === 16){
+         //const CardID = document.querySelectorAll('.match');
+         //if (CardID.length === 16){
+             console.log("time stop: " + timer1);
+             window.clearInterval(timer1);
              console.log("Congratulations");
-             alert();
+         //}
+     }
+
+     function Starts(){
+         console.log(timer1);
+         if (timer1 > 15000 && timer1 < 20000){
+            if (document.querySelector('.stars').children.length != 0){
+                document.querySelector('.stars').firstElementChild.remove();
+                return;
+             }
+         }else if(timer1 >500000 && timer1 < 510000){
+            if (document.querySelector('.stars').children.length != 0){
+                document.querySelector('.stars').firstElementChild.remove();
+                return;
+             }
+         }else if(timer1 > 1000000){
+            if (document.querySelector('.stars').children.length != 0){
+                document.querySelector('.stars').firstElementChild.remove();
+                return;
+             }
          }
      }
 
-     
 
      function timedCount(){
+        timer1 = window.setInterval(timedCount,1000);
+        var timer = timer1 / 1000;
+        //console.log(timer);
      }
 
-     function stopTimeOutAlert(){
+     function stopTime(){
+        window.clearInterval(timer1);
      }
      
  document.addEventListener('click',function(event) {
@@ -125,8 +166,12 @@ function shuffle(array) {
         ClickCard();
         CardArrey();
         FlipCard();
-        Congratulations()
-        timedCount();
+        Starts();
+        if (document.querySelectorAll('.match').length != 16){
+            timedCount();
+        }else{
+            Congratulations();
+        }
      }
  });
  
