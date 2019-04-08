@@ -20,14 +20,13 @@ cards = cards.concat(cards);
 var timer1 = null;
 
 ReStart();
-//timedCount();
+timedCount();
 
 function Reload(){
     window.location.reload();
 }
 
 function ReStart(){
-
     const mainStarts = document.querySelector('.stars');
     for (let i = 0; i < 3; i ++){
         document.querySelector('.stars').firstElementChild.remove();
@@ -120,64 +119,65 @@ function shuffle(array) {
         }
      }
 
-     function ClickCard(){
-        const ClickMoves = document.querySelector('.moves');
-        ClickMoves.textContent ++;
-     }
+function ClickCard(){
+    const ClickMoves = document.querySelector('.moves');
+    ClickMoves.textContent ++;
+}
 
      
-     function Congratulations(){
-         //const CardID = document.querySelectorAll('.match');
-         //if (CardID.length === 16){
-             console.log("time stop: " + timer1);
-             window.clearInterval(timer1);
-             console.log("Congratulations");
-         //}
-     }
-
-     function Starts(){
-         console.log(timer1);
-         if (timer1 > 19998 && timer1 < 20000){
-            if (document.querySelector('.stars').children.length != 0){
-                document.querySelector('.stars').firstElementChild.remove();
-                return;
-             }
-         }else if(timer1 >50998 && timer1 < 51000){
-            if (document.querySelector('.stars').children.length != 0){
-                document.querySelector('.stars').firstElementChild.remove();
-                return;
-             }
-         }else if(timer1 > 100000){
-            if (document.querySelector('.stars').children.length != 0){
-                document.querySelector('.stars').firstElementChild.remove();
-                return;
-             }
-         }
-     }
-
-
-     function timedCount(){
-        timer1 = window.setInterval(timedCount,1000);
-        Starts();
-        //console.log(timer);
-     }
-
-     function stopTime(){
+function Congratulations(){
+    stopTime();
+    const CardID = document.querySelectorAll('.match');
+    if (CardID.length === 16){
+        console.log("time stop: " + timer1);
         window.clearInterval(timer1);
+        console.log("Congratulations");
+        var time2 = timer1 / 1000;
+        var CMoves = document.querySelector('.moves').textContent;
+        var StarN = document.querySelector('.stars').children.length;
+        alert("Congratulations! " + " You used " + time2 + "seconds. " + " And with" + CMoves + "moves. " + " And " + StarN + " stars ");
+        
      }
+}
+
+function Starts(){
+    //console.log(timer1);
+    if (timer1 === 20000 ){
+        if (document.querySelector('.stars').children.length != 0){
+            document.querySelector('.stars').firstElementChild.remove();
+            //return;
+        }
+    }else if(timer1 === 399999 ){
+        if (document.querySelector('.stars').children.length != 0){
+            document.querySelector('.stars').firstElementChild.remove();
+            //return;
+        }
+    }else if(timer1 === 900000){
+        if (document.querySelector('.stars').children.length != 0){
+            document.querySelector('.stars').firstElementChild.remove();
+            //return;
+        }
+    }
+}
+
+
+function timedCount(){
+    timer1 = window.setInterval(timedCount,1000);
+    Starts();
+    //console.log(timer);
+}
+
+function stopTime(){
+    window.clearInterval(timer1);
+}
      
- document.addEventListener('click',function(event) {
-     if (event.target.className === 'fa fa-repeat'){
-         Reload();
-     }else if (event.target.className === 'card'){
-        //console.log(event.target.className);
+document.addEventListener('click',function(event) {
+    if (event.target.className === 'fa fa-repeat'){
+        Reload();
+    }else if (event.target.className === 'card'){
         ClickCard();
         CardArrey();
         FlipCard();
-        //Starts();
-        if (document.querySelectorAll('.match').length === 16){
-            Congratulations();
+        Congratulations();
      }
-    }
-});
- 
+    });
