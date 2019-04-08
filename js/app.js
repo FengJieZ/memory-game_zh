@@ -1,8 +1,16 @@
 /*
  * 创建一个包含所有卡片的数组
  */
-let donuts = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb','fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb'];
-
+var cards = ['fa fa-diamond',
+            'fa fa-paper-plane-o',
+            'fa fa-anchor',
+            'fa fa-bolt',
+            'fa fa-cube',
+            'fa fa-leaf',
+            'fa fa-bicycle',
+            'fa fa-bomb'
+            ];
+cards = cards.concat(cards);
 /*
  * 显示页面上的卡片
  *   - 使用下面提供的 "shuffle" 方法对数组中的卡片进行洗牌
@@ -14,7 +22,7 @@ function ReStart(){
     const ClickMoves = document.querySelector('.moves');
     ClickMoves.textContent = 0;
 
-    donuts = shuffle(donuts);
+    cards = shuffle(cards);
 
     for (let i = 0; i < 16; i ++){
         document.querySelector('.card').remove();
@@ -26,7 +34,7 @@ function ReStart(){
         const newLi = document.createElement('li');
         newLi.className = "card";
         const newI = document.createElement('i');
-        newI.className = donuts[i];
+        newI.className = cards[i];
         newLi.appendChild(newI);
         mainUl.appendChild(newLi);
     }
@@ -97,8 +105,16 @@ function shuffle(array) {
          const CardID = document.querySelectorAll('.match');
          if (CardID.length === 16){
              console.log("Congratulations");
-             alert("Congratulations");
+             alert();
          }
+     }
+
+     
+
+     function timedCount(){
+     }
+
+     function stopTimeOutAlert(){
      }
      
  document.addEventListener('click',function(event) {
@@ -110,6 +126,7 @@ function shuffle(array) {
         CardArrey();
         FlipCard();
         Congratulations()
+        timedCount();
      }
  });
  
