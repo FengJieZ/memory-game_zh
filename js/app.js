@@ -17,10 +17,19 @@ cards = cards.concat(cards);
  *   - 循环遍历每张卡片，创建其 HTML
  *   - 将每张卡的 HTML 添加到页面
  */
-var timer1 = null;
 
 ReStart();
-timedCount();
+
+    var time = 1;
+    const timer = setInterval(function() {
+        //每一秒执行一次
+        //console.log(timer); 
+        time += 1;
+        //console.log(time);
+        //更新 HTML 上面的时间，参考我给的链接
+        document.querySelector('.timer').innerHTML = time;
+        Starts();
+    }, 1000);
 
 function Reload(){
     window.location.reload();
@@ -41,6 +50,9 @@ function ReStart(){
 
     const ClickMoves = document.querySelector('.moves');
     ClickMoves.textContent = 0;
+
+    const PlayTimes = document.querySelector('.timer');
+    PlayTimes.textContent = 0;
 
     cards = shuffle(cards);
 
@@ -119,59 +131,54 @@ function shuffle(array) {
         }
      }
 
-function ClickCard(){
+ function ClickCard(){
     const ClickMoves = document.querySelector('.moves');
     ClickMoves.textContent ++;
 }
 
      
 function Congratulations(){
-    stopTime();
     const CardID = document.querySelectorAll('.match');
     if (CardID.length === 16){
-        console.log("time stop: " + timer1);
-        window.clearInterval(timer1);
+        stopTime();
+        console.log("time stop: " + time);
         console.log("Congratulations");
-        var time2 = timer1 / 1000;
+        //var time2 = timer1 / 1000;
         var CMoves = document.querySelector('.moves').textContent;
         var StarN = document.querySelector('.stars').children.length;
         //alert("Congratulations! " + " You used " + time2 + "seconds. " + " And with" + CMoves + "moves. " + " And " + StarN + " stars ");
         //var data = CMoves;
         //window.parent.postMessage(data,'*');
-        window.open("c.html" + "?" + time2 + "|" + CMoves + "|" + StarN);
+        window.open("c.html" + "?" + time + "|" + CMoves + "|" + StarN);
         window.close();
      }
 }
 
 function Starts(){
-    //console.log(timer1);
-    if (timer1 === 20000 || timer1 === 399999 || timer1 === 900000){
+    console.log(time);
+    if (time === 20 || time === 50 || time === 100){
         if (document.querySelector('.stars').children.length != 0){
             document.querySelector('.stars').firstElementChild.remove();
-            //return;
         }
-    }/*else if(timer1 === 399999 ){
-        if (document.querySelector('.stars').children.length != 0){
-            document.querySelector('.stars').firstElementChild.remove();
-            //return;
-        }
-    }else if(timer1 === 900000){
-        if (document.querySelector('.stars').children.length != 0){
-            document.querySelector('.stars').firstElementChild.remove();
-            //return;
-        }
-    }*/
+    }
 }
 
 
 function timedCount(){
-    timer1 = window.setInterval(timedCount,1000);
-    Starts();
+    /*var time = 1;
+    const timer = setInterval(function() {
+        //每一秒执行一次
+        console.log(timer); 
+        time += 1;
+        console.log(time);
+        //更新 HTML 上面的时间，参考我给的链接
+        document.querySelector('.timer').innerHTML = time;
+    }, 1000);*/
     //console.log(timer);
 }
 
 function stopTime(){
-    window.clearInterval(timer1);
+    clearInterval(timer);
 }
      
 document.addEventListener('click',function(event) {
